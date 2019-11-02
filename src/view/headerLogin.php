@@ -29,14 +29,16 @@
     <div class="container">
         <a class="navbar-brand" href="/bases-php">Accueil</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
+    Menu
             <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/bases-php/login">Se connecter</a>
+                    <a class="nav-link" href="/bases-php/newArticle">Créer article</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bases-php/logoff">Se déconnecter</a>
                 </li>
             </ul>
         </div>
