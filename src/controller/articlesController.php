@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . '/../model/articles.php');
 require_once(__DIR__ . '/../model/comments.php');
+require_once(__DIR__ . '/../model/users.php');
 
 function displayArticleContent($idArticle) {
 
@@ -28,10 +29,10 @@ function writeArticle() {
 
     if (!isset($_POST['content']) && !isset($_POST['title']) && !isset($_POST['category']) && isset($_SESSION['loged'])) {
         require_once(__DIR__ . '/../view/createArticle.php');
+        require_once(__DIR__ . '/../view/uploadFile.php');
     } else {
-        savePost($_POST['title'], $_POST['content'], $_POST['category']);
+        savePost($_POST['title'], $_POST['content'], $_POST['category'], getUserId($_SESSION['name'])[0]);
         header('Location: /bases-php/');
     }
 }
-
 ?>

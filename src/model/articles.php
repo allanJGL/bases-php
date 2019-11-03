@@ -58,11 +58,12 @@ function deleteArticleById($idArticle) {
         $query->execute();
 }
 
-function savePost($title, $content, $category) {
+function savePost($title, $content, $category, $idUser) {
 
     $db = connect();
 
-    $query = $db->prepare("INSERT INTO posts (title, content, idCategory) VALUES ('". urlencode($title) . "', '". urlencode($content) . "', " . urlencode($category) . ")");
+    $query = $db->prepare("INSERT INTO posts (title, content, idCategory, idUser) 
+        VALUES ('". urlencode($title) . "', '". urlencode($content) . "', " . urlencode($category) . ", " . $idUser . ")");
     $query->execute();
 }
 

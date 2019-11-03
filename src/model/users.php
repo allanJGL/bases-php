@@ -22,3 +22,22 @@ function getPassword($username){
 
     return $query->fetch();
 }
+
+function newUser($username, $password) {
+    $db = connect();
+
+    $query = $db->prepare("INSERT INTO users (username, password) VALUES ('" . $username . "', '" . $password . "')" );
+    $query->execute();
+
+}
+
+function getUserId($username) {
+
+    $db = connect();
+
+    $query = $db->prepare("SELECT id FROM users WHERE username = '" . $username ."'");
+    $query->execute();
+
+    return $query->fetch();
+
+}
