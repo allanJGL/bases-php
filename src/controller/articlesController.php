@@ -3,6 +3,7 @@ require_once(__DIR__ . '/../model/articles.php');
 require_once(__DIR__ . '/../model/comments.php');
 require_once(__DIR__ . '/../model/users.php');
 require_once(__DIR__ . '/commentsController.php');
+require_once(__DIR__ . '/categoriesController.php');
 
 function writeArticle() {
 
@@ -23,20 +24,22 @@ function writeArticle() {
 }
 
 function editArticle($idArticle) {
-
     if (!isset($_POST['content']) && !isset($_POST['title']) && !isset($_POST['category']) && isset($_SESSION['loged']) && !isset($_POST['image'])) {
-        require_once(__DIR__ . '/../view/articleForm.php');
-    } else {
+        $article = getArticleContent($idArticle);
+        $title = $article[0]['title'];
+        $content = $article[0]['content'];
+        echo"
+            <form method='post' action='' enctype='multipart/form-data'>
+                <input type='text' value='" . urldecode($title) . "' name='title'><br><br>";
+                displayCategoryList();
+        echo "  <br><textarea name='content'class='form-control'> " . urldecode($content) . " </textarea><br>                
+                <input type='file' name='image' /><br><br>
+                <input type='submit' name='submit' value='Envoyer' id='submit'/><br><br><br>
+            </form>";
 
-        $uploaddir = __DIR__ . '/../../img/';
-        $uploadfile = $uploaddir . basename($_FILES['image']['name']);
-
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
-            editPost($idArticle, $_POST['title'], $_POST['content'], $_POST['category'], getUserId($_SESSION['name'])[0], "img%5C" . urlencode($_FILES['image']['name']));
-            header('Location: /bases-php/');
-        } else {
-            echo 'veuillez remplir tous les champs';
-        }
+    } elseif (isset($_POST['content']) && isset($_POST['title']) && isset($_POST['category']) && isset($_SESSION['loged']) && !isset($_POST['image'])) {
+            editPostNoImg($idArticle, $_POST['title'], $_POST['content'], $_POST['category'][0]);
+            header('Location: /bases-php/admin');
     }
 }
 
@@ -69,7 +72,7 @@ function displayListArticles() {
     }
     echo "</ul>";
 
-    echo "<h5>Créé une nouvelle catégorie :</h5>";
+    echo "<h5>Créer une nouvelle catégorie :</h5>";
     echo "<form method=\"post\" action=\"newCategory\">
             <input type=\"text\" name=\"name\" placeholder=\"catégorie\"><br><br>
             <input type=\"submit\" name=\"submit\" value=\"Envoyer\" id=\"submit\"/><br><br><br>

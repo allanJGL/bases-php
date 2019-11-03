@@ -67,7 +67,7 @@ function savePost($title, $content, $category, $idUser, $imgPath) {
     $query->execute();
 }
 
-function editPost($idArticle, $title, $content, $category, $idUser, $imgPath) {
+function editPost($idArticle, $title, $content, $category, $imgPath) {
 
     $db = connect();
 
@@ -75,5 +75,12 @@ function editPost($idArticle, $title, $content, $category, $idUser, $imgPath) {
     $query->execute();
 }
 
+function editPostNoImg($idArticle, $title, $content, $category) {
+
+    $db = connect();
+
+    $query = $db->prepare("UPDATE posts SET title = '" . $title . "', content = '" . $content . "', idCategory = " . $category . " WHERE id = " . $idArticle);
+    $query->execute();
+}
 
 ?>

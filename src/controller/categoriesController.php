@@ -15,7 +15,7 @@ function createCategory() {
 
 function displayCategoryList() {
     $categoryList = getCategories();
-    echo "<select name=\"category\" size=\"" . sizeof($categoryList) . "\">";
+    echo "<select name=\"category\">";
     foreach ($categoryList as $key => $value) {
         echo "<option value=\"" . $value['id'] . "\">" . $value['name'] . "</option>";
     }
