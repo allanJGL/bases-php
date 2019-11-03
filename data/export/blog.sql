@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 03, 2019 at 05:33 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Hôte : 127.0.0.1
+-- Généré le :  Dim 03 nov. 2019 à 19:31
+-- Version du serveur :  10.1.35-MariaDB
+-- Version de PHP :  7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bases-php`
+-- Base de données :  `bases-php`
 --
 CREATE DATABASE IF NOT EXISTS `bases-php` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `bases-php`;
@@ -27,7 +27,7 @@ USE `bases-php`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Structure de la table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -36,17 +36,18 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categories`
+-- Déchargement des données de la table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (0, 'autres'),
-(1, 'pizza');
+(1, 'pizza'),
+(3, 'test');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Structure de la table `comments`
 --
 
 CREATE TABLE `comments` (
@@ -56,7 +57,7 @@ CREATE TABLE `comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `comments`
+-- Déchargement des données de la table `comments`
 --
 
 INSERT INTO `comments` (`id`, `content`, `idPost`) VALUES
@@ -68,7 +69,7 @@ INSERT INTO `comments` (`id`, `content`, `idPost`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- Structure de la table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -81,7 +82,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `posts`
+-- Déchargement des données de la table `posts`
 --
 
 INSERT INTO `posts` (`id`, `imagePath`, `title`, `content`, `idCategory`, `idUser`) VALUES
@@ -98,13 +99,12 @@ INSERT INTO `posts` (`id`, `imagePath`, `title`, `content`, `idCategory`, `idUse
 (20, NULL, '11', '', 0, 4),
 (21, NULL, 'test', 'test', 1, 4),
 (24, NULL, 'test+bidule', 'coucou', 0, 4),
-(25, NULL, 'testiduser', 'blabla', 0, 3),
 (26, 'img%5Ctree.jpg', 'Team+Trees', '%3Ca+href%3D%22https%3A%2F%2Fteamtrees.org%22%3Egive+to+team+trees+and+save+the+planet%3C%2Fa%3E', 0, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -114,33 +114,34 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (3, 'test2', '$2y$10$JBRlrglJA2PR93AJSJFZWOifZk8X.yPWuXdCsOelTHnGsJR9whyZG'),
 (4, 'admin', '$2y$10$Fd3crjkkChFmqZEBVCA5LOPP368JjMTT1PJTU/wZsMV2I7tCC040i'),
-(5, 'Elon Musk', '$2y$10$ow2fbWZxxdFUwQFJQaZl3.tBZ8UVF3wYc7zm4rMoSTKkIGDt7qJc2');
+(5, 'Elon Musk', '$2y$10$ow2fbWZxxdFUwQFJQaZl3.tBZ8UVF3wYc7zm4rMoSTKkIGDt7qJc2'),
+(6, 'testAllan', '$2y$10$3vkcYdI1iSmDSx.2ogcekuxm5F4LTPxCdpemHKlTuU6s72aKwSLIm');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `categories`
+-- Index pour la table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `comments`
+-- Index pour la table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idPost` (`idPost`);
 
 --
--- Indexes for table `posts`
+-- Index pour la table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
@@ -148,51 +149,51 @@ ALTER TABLE `posts`
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT pour la table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `comments`
+-- Contraintes pour la table `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`idPost`) REFERENCES `posts` (`id`);
 
 --
--- Constraints for table `posts`
+-- Contraintes pour la table `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `categories` (`id`),

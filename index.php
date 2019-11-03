@@ -15,10 +15,11 @@ if (isset($_SESSION['loged'])) {
 }
 
 switch ($requestedPage[0]) {
+
     case '/bases-php/' :
         include_once(__DIR__ . '/src/controller/frontController.php');
-        getListArticles(1);
-        getPagination();
+        displayArticles(1);
+        displayPagination();
         break;
 
     case '/bases-php/login' :
@@ -41,11 +42,22 @@ switch ($requestedPage[0]) {
         writeArticle();
         break;
 
+    case '/bases-php/newCategory' :
+        include_once(__DIR__ . '/src/controller/categoriesController.php');
+        createCategory();
+        break;
+
+    case '/bases-php/admin' :
+        include_once(__DIR__ . '/src/controller/articlesController.php');
+        include_once(__DIR__ . '/src/controller/categoriesController.php');
+        displayListArticles();
+        break;
+
     case (preg_match('/page=.*/', $requestedPage[0]) ? true : false) :
         include_once(__DIR__ . '/src/controller/frontController.php');
         preg_match('/(\d+)/', $requestedPage[0], $m);
-        getListArticles($m[0]);
-        getPagination();
+        displayArticles($m[0]);
+        displayPagination();
         break;
 
     case (preg_match('/articleId=.*/', $requestedPage[0]) ? true : false) :
@@ -67,6 +79,12 @@ switch ($requestedPage[0]) {
         include_once(__DIR__ . '/src/controller/articlesController.php');
         preg_match('/(\d+)/', $requestedPage[0], $m);
         deleteArticle($m[0]);
+        break;
+
+    case (preg_match('/editArticle=.*/', $requestedPage[0]) ? true : false) :
+        include_once(__DIR__ . '/src/controller/articlesController.php');
+        preg_match('/(\d+)/', $requestedPage[0], $m);
+        editArticle($m[0]);
         break;
 }
 

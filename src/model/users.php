@@ -23,7 +23,7 @@ function getPassword($username){
     return $query->fetch();
 }
 
-function newUser($username, $password) {
+function saveUser($username, $password) {
     $db = connect();
 
     $query = $db->prepare("INSERT INTO users (username, password) VALUES ('" . $username . "', '" . $password . "')" );

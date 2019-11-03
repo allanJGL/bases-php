@@ -38,6 +38,9 @@
                     <a class="nav-link" href="/bases-php/newArticle">Créer article</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/bases-php/admin">Espace Admin</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/bases-php/logoff">Se déconnecter</a>
                 </li>
             </ul>

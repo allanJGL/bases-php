@@ -58,13 +58,22 @@ function deleteArticleById($idArticle) {
         $query->execute();
 }
 
-function savePost($title, $content, $category, $idUser) {
+function savePost($title, $content, $category, $idUser, $imgPath) {
 
     $db = connect();
 
-    $query = $db->prepare("INSERT INTO posts (title, content, idCategory, idUser) 
-        VALUES ('". urlencode($title) . "', '". urlencode($content) . "', " . urlencode($category) . ", " . $idUser . ")");
+    $query = $db->prepare("INSERT INTO posts (title, content, idCategory, idUser, imagePath) 
+        VALUES ('". urlencode($title) . "', '". urlencode($content) . "', " . urlencode($category) . ", " . $idUser . ", '" . $imgPath . "')");
     $query->execute();
 }
+
+function editPost($idArticle, $title, $content, $category, $idUser, $imgPath) {
+
+    $db = connect();
+
+    $query = $db->prepare("UPDATE posts SET title = '" . $title . "', content = '" . $content . "', idCategory = " . $category . ", imagePath = '" . $imgPath . "' WHERE id = " . $idArticle);
+    $query->execute();
+}
+
 
 ?>

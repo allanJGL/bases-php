@@ -2,13 +2,12 @@
 require_once(__DIR__ . '/../model/articles.php');
 require_once(__DIR__ . '/../model/users.php');
 
-function getListArticles($page) {
+function displayArticles($page) {
     $page = $page*10;
     $articles = getArticles();
     $iteration = 0;
 
     echo "<ul class=\"list-unstyled\">";
-
     foreach ($articles as $key => $value) {
         $iteration++;
         if (($iteration <= $page) && ($iteration > $page-10) ) {
@@ -26,7 +25,7 @@ function getListArticles($page) {
     echo "</ul>";
 }
 
-function getPagination() {
+function displayPagination() {
     $size = sizeof(getArticles());
     if ($size >= 10) {
         echo "<nav aria-label=\"...\">
